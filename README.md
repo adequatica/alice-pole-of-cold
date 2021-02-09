@@ -1,6 +1,6 @@
-# Где МКС
+# Полюс холода
 
-Serverless [навык Алисы](https://dialogs.yandex.ru/store/skills/8039a055-polyus-holod) на Node.js. Сообщает погоду (температуру) на Северном и Южном полюсах?
+Serverless [навык Алисы](https://dialogs.yandex.ru/store/skills/8039a055-polyus-holod) на Node.js на основе навыка «[Где МКС](https://github.com/enotramone/alice-where-is-iss)». Сообщает погоду (температуру) на Северном и Южном полюсах?
 
 ### Как это работает?
 
@@ -9,7 +9,7 @@ Serverless [навык Алисы](https://dialogs.yandex.ru/store/skills/8039a0
 Алиса отвечает приветственным сообщением навыка: «*cпросите какой полюс холоднее, северный или южный?*»;
 
 На любую следующую фразу происходит:
-* Поход в [OpenWeather API](https://openweathermap.org/api) за текущей погодой на полюсах;
+* Поход в [OpenWeather API](https://openweathermap.org/api) за текущей погодой на полюсах;
 * Определяется на каком полюсе холоднее и сообщается температура.
 
 Деплой происходит через [Функцию в Яндекс.Облаке](https://yandex.ru/dev/dialogs/alice/doc/deploy-ycloud-function-docpage/).
