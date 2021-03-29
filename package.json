@@ -21,7 +21,7 @@
     "serverless"
   ],
   "author": "Andrey Yenin",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {}
 }
