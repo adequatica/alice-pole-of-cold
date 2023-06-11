@@ -1,7 +1,7 @@
 {
   "name": "alice-pole-of-cold",
   "version": "1.0.0",
-  "description": "Serverless skill for Alice",
+  "description": "Serverless skill for Alice to answer which pole is colder",
   "engines": {
     "node": ">=14"
   },
@@ -17,8 +17,7 @@
     "south pole",
     "южный полюс",
     "north pole",
-    "северный полюс",
-    "serverless"
+    "северный полюс"
   ],
   "author": "Andrey Enin <enotramone@gmail.com>",
   "license": "MIT",

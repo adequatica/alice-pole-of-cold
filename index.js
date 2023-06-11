@@ -2,14 +2,17 @@
 // https://nodejs.org/api/https.html
 const https = require("https");
 
-// Погодное API https://openweathermap.org/current
+// Weather API / Погодное API
+// https://openweathermap.org/current
 const apiWeater = "https://api.openweathermap.org/data/2.5/weather";
+// Secret key is stored in environment variable
 // Секретик ключа лежит в переменной окружения
 // https://nodejs.org/api/process.html#process_process_env
 const apiWeatherKey = process.env.key;
 
+// For a serverless application, you need to write API calls on a «pure node» (probably)
 // Для serverless приложения нужно написать вызовы к API на «чистой ноде» (наверное)
-// https://cloud.yandex.ru/docs/functions/concepts/function
+// https://cloud.yandex.com/en/docs/functions/concepts/function
 const getHttps = (url) => new Promise((resolve, reject) => {
     https.get(url, res => {
         if (res.statusCode === 200) {
@@ -33,10 +36,13 @@ const getHttps = (url) => new Promise((resolve, reject) => {
     });
 });
 
+// Creating skills for Alice
 // Создание навыка в Яндекс.Облаке
-// https://cloud.yandex.ru/docs/functions/solutions/alice-skill
+// https://cloud.yandex.com/en/docs/functions/tutorials/alice-skill
+// Creating a serverless function in Yandex.Cloud
 // Создание функции в Яндекс.Облаке
 // https://yandex.ru/dev/dialogs/alice/doc/deploy-ycloud-function-docpage/#create-function
+// Example of a skill using a serverless function
 // Пример навыка с использованием serverless функции
 // https://github.com/yandex-cloud/examples/blob/master/serverless/functions/alice/nodejs/parrot/index.js
 /**
@@ -50,10 +56,13 @@ module.exports.handler = async (event) => {
     // https://yandex.ru/dev/dialogs/alice/doc/protocol-docpage/
     const {request, version, session} = event;
 
+    // Skill MUST contain welcome message and help
     // Навык ДОЛЖЕН содержать приветственное сообщение и help
     // https://yandex.ru/dev/dialogs/alice/doc/requirements-docpage/#specific__content
+    // "Ask which pole is colder, north or south?"
     const textWelcome = "Спросите какой полюс холоднее, северный или южный?";
-    const textHelp = "На любой вопрос отвечу прогодой на полюсах.";
+    // "I will answer any question with the weather at the poles"
+    const textHelp = "На любой вопрос отвечу погодой на полюсах";
 
     if (session.new) {
         return {
@@ -68,6 +77,7 @@ module.exports.handler = async (event) => {
 
     const command = request.command.toLowerCase();
 
+    // "help" || "what can you do"
     if (command.includes("помощь") || command.includes("что ты умеешь")) {
         return {
             version,
@@ -87,14 +97,18 @@ module.exports.handler = async (event) => {
 
     let answer;
 
+    // Easter egg ("warmer")
     // Пасхалка
     if (command.includes("теплее")) {
 
         if (tempNorth > tempSouth) {
+            // `It is warmer at the North Pole now, there is ${tempNorth}. At the South Pole is ${tempSouth}`
             answer = `Сейчас теплее на Северном полюсе, там ${tempNorth}. На Южном полюсе ${tempSouth}`;
         } else if (tempNorth < tempSouth) {
+            // `It is warmer at the South Pole now, there is ${tempNorth}. At the North Pole is ${tempSouth}`
             answer = `Сейчас теплее на Южном полюсе, там ${tempSouth}. На Северном полюсе ${tempNorth}`;
         } else {
+            // `It is equally ${tempNorth} at both poles`
             answer = `На обоих полюсах одинаково ${tempNorth}`;
         }
 
@@ -103,6 +117,7 @@ module.exports.handler = async (event) => {
             session,
             response: {
                 text: answer,
+                // Finish dialog after answer
                 // Завершаем разговор после ответа
                 end_session: true
             }
@@ -110,10 +125,13 @@ module.exports.handler = async (event) => {
     }
 
     if (tempNorth > tempSouth) {
+        // `It is colder at the South Pole now, there is ${tempNorth}. At the North Pole is ${tempSouth}`
         answer = `Сейчас холоднее на Южном полюсе, там ${tempSouth}. На Северном полюсе ${tempNorth}`;
     } else if (tempNorth < tempSouth) {
+        // `It is colder at the North Pole now, there is ${tempNorth}. At the South Pole is ${tempSouth}`
         answer = `Сейчас холоднее на Северном полюсе, там ${tempNorth}. На Южном полюсе ${tempSouth}`;
     } else {
+        // `It is equally ${tempNorth} at both poles`
         answer = `На обоих полюсах одинаково ${tempNorth}`;
     }
 
@@ -122,6 +140,7 @@ module.exports.handler = async (event) => {
         session,
         response: {
             text: answer,
+            // Finish dialog after answer
             // Завершаем разговор после ответа
             end_session: true
         }
