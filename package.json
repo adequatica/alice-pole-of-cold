@@ -2,11 +2,6 @@
   "name": "alice-pole-of-cold",
   "version": "1.0.0",
   "description": "Serverless skill for Alice to answer which pole is colder",
-  "engines": {
-    "node": ">=14"
-  },
-  "main": "index.js",
-  "scripts": {},
   "keywords": [
     "Alice",
     "Алиса",
@@ -19,8 +14,16 @@
     "north pole",
     "северный полюс"
   ],
-  "author": "Andrey Enin <enotramone@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adequatica/alice-pole-of-cold"
+  },
+  "author": "Andrey Enin",
   "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "main": "index.js",
   "dependencies": {},
-  "devDependencies": {}
+  "scripts": {}
 }
