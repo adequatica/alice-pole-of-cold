@@ -4,15 +4,10 @@
   "description": "Serverless skill for Alice to answer which pole is colder",
   "keywords": [
     "Alice",
-    "Алиса",
     "skill",
-    "навык",
     "weather",
-    "погода",
     "south pole",
-    "южный полюс",
-    "north pole",
-    "северный полюс"
+    "north pole"
   ],
   "repository": {
     "type": "git",
@@ -21,7 +16,7 @@
   "author": "Andrey Enin",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "main": "index.js",
   "dependencies": {},
