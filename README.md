@@ -1,6 +1,6 @@
 # The Pole of Cold
 
-Serverless [skill for Alice](https://dialogs.yandex.ru/store/skills/8039a055-polyus-holod) ([virtual assistant](<https://en.wikipedia.org/wiki/Alice_(virtual_assistant)>)) based on Node.js.
+**Serverless [skill for Alice](https://dialogs.yandex.com/store/skills/8039a055-polyus-holod)** ([virtual assistant](<https://en.wikipedia.org/wiki/Alice_(virtual_assistant)>)) based on Node.js.
 
 It reports the weather (temperature) at the North and South Poles?
 

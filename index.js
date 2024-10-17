@@ -9,11 +9,15 @@ const apiWeater = "https://api.openweathermap.org/data/2.5/weather";
 // https://nodejs.org/api/process.html#process_process_env
 const apiWeatherKey = process.env.key;
 
+const freezingPoint = JSON.parse('{"main": {"temp": 0}}');
+
 // For a serverless application, you need to write API calls on a «pure node» (probably)
 // https://cloud.yandex.com/en/docs/functions/concepts/function
+//
+// This function is used only for Weather API requests
 const getHttps = (url) =>
   new Promise((resolve, reject) => {
-    https.get(url, (res) => {
+    const req = https.get(url, (res) => {
       if (res.statusCode === 200) {
         let rawData = "";
         res.on("data", (chunk) => {
@@ -29,11 +33,20 @@ const getHttps = (url) =>
             }
           })
           .on("error", (err) => {
+            // Instead of an error, here returns freezing point to prevent a failed skill
+            resolve(freezingPoint);
             console.log(`Error: ${err.message}`);
           });
       } else {
+        // Instead of an error, here returns freezing point to prevent a failed skill
+        resolve(freezingPoint);
         console.log("Error");
       }
+    });
+
+    req.setTimeout(2500, () => {
+      // Instead of an error by timeout, here returns freezing point to prevent a failed skill
+      resolve(freezingPoint);
     });
   });
 
